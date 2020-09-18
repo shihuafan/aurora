@@ -7,27 +7,19 @@ use crate::response::Response;
 use threadpool::ThreadPool;
 
 pub struct Aurora {
-    pub routers: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
+    pub listener_map: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
     pub pool: ThreadPool
 }
 
 impl Default for Aurora{
     fn default() -> Self {
-        Aurora{routers: HashMap::new(), pool: ThreadPool::new(4) }
+        Aurora{ listener_map: HashMap::new(), pool: ThreadPool::new(4) }
     }
 }
 
 impl Aurora{
-    pub fn add_router(&mut self, url: &str, func: fn(&Request, &mut Response)){
-        self.routers.insert(Box::new(url.to_string()), Box::new(func));
-    }
-
-    pub fn get_urls(&mut self) -> Vec<String>{
-        let mut urls = Vec::<String>::new();
-        for url in self.routers.keys() {
-            urls.push(url.to_string());
-        };
-        return urls;
+    pub fn add_listener(&mut self, url: &str, func: fn(&Request, &mut Response)){
+        self.listener_map.insert(Box::new(url.to_string()), Box::new(func));
     }
 
     pub fn run(&self, host: &str, port: &str){
@@ -64,8 +56,8 @@ impl Aurora{
 
     fn get_map(&self) -> HashMap<Box<String>, Box<fn(&Request, &mut Response)>>{
         let mut map = HashMap::new();
-        for url in self.routers.keys() {
-            let func = self.routers.get(url).unwrap();
+        for url in self.listener_map.keys() {
+            let func = self.listener_map.get(url).unwrap();
             map.insert(url.clone(), func.clone());
         };
         return map;

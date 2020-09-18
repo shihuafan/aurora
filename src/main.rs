@@ -8,8 +8,8 @@ use crate::response::Response;
 
 fn main() {
     let mut aurora = Aurora::default();
-    aurora.add_router("/shihuafan" , my_test);
-    aurora.add_router("/" , default);
+    aurora.add_listener("/shihuafan", my_test);
+    aurora.add_listener("/", default);
     aurora.run("127.0.0.1", "1234");
 }
 

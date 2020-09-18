@@ -14,9 +14,9 @@ fn main() {
 }
 
 fn my_test(_request: &Request, _response: &mut Response){
-    println!("my_test")
+    println!("==my_test==")
 }
 
 fn default(_request: &Request, _response: &mut Response){
-    println!("default")
+    println!("==default==")
 }

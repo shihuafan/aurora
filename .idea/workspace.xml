@@ -13,9 +13,9 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9615839f-ff20-498f-ad27-df9fb115b7e0" name="Default Changelist" comment="add lib">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="9615839f-ff20-498f-ad27-df9fb115b7e0" name="Default Changelist" comment="add README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +47,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/shihuafan/development/aurora/src/aurora.rs" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin.scripting" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -55,7 +58,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Cargo Command.Test aurora">
+  <component name="RunManager" selected="Cargo Command.Run aurora">
     <configuration name="Run aurora" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package aurora --bin aurora" />
@@ -84,12 +87,6 @@
       <item itemvalue="Cargo Command.Run aurora" />
       <item itemvalue="Cargo Command.Test aurora" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Cargo Command.Test aurora" />
-        <item itemvalue="Cargo Command.Run aurora" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -133,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600442257725</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add README.md">
+      <created>1600443459353</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600443459353</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,13 +157,18 @@
     <MESSAGE value="add thread pool when process request" />
     <MESSAGE value="remove get_urls api and rename map" />
     <MESSAGE value="add lib" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lib" />
+    <MESSAGE value="add README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="add README.md" />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="135" key="#Inspections" timestamp="1600351812745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="354" y="135" key="#Inspections/0.0.1440.900@0.0.1440.900" timestamp="1600351812745" />
+    <state x="320" y="98" key="#Plugins" timestamp="1600443972935">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="98" key="#Plugins/0.0.1440.900@0.0.1440.900" timestamp="1600443972935" />
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600442200092">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -200,14 +209,14 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="543" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1600352320387" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600442265568">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600443467066">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600344199850" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600442265568" />
-    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1600179175600">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600443467066" />
+    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1600443905713">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1600179175600" />
+    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1600443905713" />
   </component>
 </project>

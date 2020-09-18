@@ -1,19 +1,19 @@
 use std::collections::HashMap;
-use std::net::TcpListener;
-use std::io::{Write, Read};
-use std::time::Duration;
+use std::net::{TcpListener, TcpStream};
+use std::io::Write;
 
 use crate::request::Request;
 use crate::response::Response;
-use crate::thread_pool::ThreadPool;
+use threadpool::ThreadPool;
 
 pub struct Aurora {
     pub routers: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
+    pub pool: ThreadPool
 }
 
 impl Default for Aurora{
     fn default() -> Self {
-        Aurora{routers: HashMap::new() }
+        Aurora{routers: HashMap::new(), pool: ThreadPool::new(4) }
     }
 }
 
@@ -35,20 +35,50 @@ impl Aurora{
         address.push_str(":");
         address.push_str(port);
         println!("start listener {}", address);
+
         let listener = TcpListener::bind(address).unwrap();
-        let thread_pool = ThreadPool{};
+
         for stream in listener.incoming() {
-            let mut s = stream.unwrap();
+            self.process_request(stream.unwrap());
+        }
+    }
+
+    fn process_request(&self, mut s: TcpStream){
+        let mut map = self.get_map();
+        self.pool.execute(move || {
             let request = Request::new(&mut s);
             let mut response = Response::new();
-            for url in self.routers.keys() {
-                let func = self.routers.get(url).unwrap();
+            let func = match_func(&request.url, &mut map);
+            if func.is_some(){
+                let func = func.unwrap();
                 func(&request, &mut response);
                 let bytes = response.get_bytes();
                 s.write(bytes.as_slice()).unwrap();
                 s.flush().unwrap();
-                break;
-            };
-        }
+            }else{
+                s.write("HTTP 404 NOT FOUND\r\n\r\n".as_bytes()).unwrap();
+                s.flush().unwrap();
+            }
+        });
     }
+
+    fn get_map(&self) -> HashMap<Box<String>, Box<fn(&Request, &mut Response)>>{
+        let mut map = HashMap::new();
+        for url in self.routers.keys() {
+            let func = self.routers.get(url).unwrap();
+            map.insert(url.clone(), func.clone());
+        };
+        return map;
+    }
+}
+
+pub fn match_func<'a>(url: &'a str, map: &'a mut HashMap<Box<String>, Box<fn(&Request, &mut Response)>>)
+    -> Option<&'a Box<fn(&Request, &mut Response)>>{
+    let value = if map.contains_key(&url.to_string()){
+        map.get(&url.to_string())
+    } else {
+        map.get(&"/".to_string())
+    };
+    return value;
+
 }

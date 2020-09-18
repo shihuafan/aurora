@@ -1,6 +1,3 @@
-use std::collections::HashMap;
-use std::io::Bytes;
-use std::borrow::Borrow;
 
 pub struct Response {
     pub version: String,

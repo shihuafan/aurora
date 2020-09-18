@@ -1,22 +1,22 @@
 mod aurora;
 mod request;
 mod response;
-mod thread_pool;
 
 use self::aurora::Aurora;
-use std::net::TcpStream;
-use std::io::{Read, Write};
 use crate::request::Request;
 use crate::response::Response;
-use std::process::Command;
 
 fn main() {
     let mut aurora = Aurora::default();
-    aurora.add_router("/my_test" , my_test);
+    aurora.add_router("/shihuafan" , my_test);
+    aurora.add_router("/" , default);
     aurora.run("127.0.0.1", "1234");
 }
 
-fn my_test(request: &Request, response: &mut Response){
-    println!("{}", request);
-    println!("shihaufan+++++")
+fn my_test(_request: &Request, _response: &mut Response){
+    println!("my_test")
+}
+
+fn default(_request: &Request, _response: &mut Response){
+    println!("default")
 }

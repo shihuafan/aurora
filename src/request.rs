@@ -1,8 +1,6 @@
 use std::net::TcpStream;
 use std::io::Read;
 use std::collections::HashMap;
-use std::path::Display;
-use std::fmt;
 
 pub struct Request {
     pub method: String,
@@ -14,7 +12,6 @@ pub struct Request {
 
 impl Request{
     pub fn new(stream: &mut TcpStream) -> Request{
-
         let mut string_buffer = String::new();
         loop{
             let mut buffer = [0; 1024];
@@ -29,7 +26,6 @@ impl Request{
         loop {
             let line = lines.next();
             if line == Option::None || line.unwrap().len() == 0 { break };
-            println!("{}", line.unwrap());
             let index = line.unwrap().find(": ");
             if index != Option::None {
                 let key = &line.unwrap()[0..index.unwrap()];
@@ -39,14 +35,11 @@ impl Request{
             };
         }
 
-        let content_length = request.head.get(&"Content-Length".to_string());
-        let content_type = request.head.get(&"Content-Type".to_string());
+        // let content_length = request.head.get(&"Content-Length".to_string());
+        // let content_type = request.head.get(&"Content-Type".to_string());
         loop {
             let line = lines.next();
             if line == Option::None{ break };
-
-            println!("{}", line.unwrap());
-            println!("{}", line.unwrap().len());
         }
 
         return request;
@@ -90,19 +83,5 @@ impl Request{
             };
         };
         return request;
-    }
-}
-
-impl fmt::Display for Request{
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "method: {}", self.method);
-        writeln!(f, "url: {}", self.url);
-        for key in self.query.keys() {
-            writeln!(f, "{}: {}", key, self.query.get(key).unwrap());
-        }
-        for key in self.head.keys() {
-            writeln!(f, "{}: {}", key, self.head.get(key).unwrap());
-        }
-        writeln!(f, "version: {}", self.version)
     }
 }

@@ -13,9 +13,8 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9615839f-ff20-498f-ad27-df9fb115b7e0" name="Default Changelist" comment="add thread pool when process request">
-      <change beforePath="$PROJECT_DIR$/src/aurora.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/aurora.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+    <list default="true" id="9615839f-ff20-498f-ad27-df9fb115b7e0" name="Default Changelist" comment="remove get_urls api and rename map">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +43,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="org.rust.disableDetachedFileInspection/Users/shihuafan/development/aurora/src/aurora.rs" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin.scripting" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Cargo Command.Test aurora">
     <configuration name="Run aurora" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package aurora --bin aurora" />
@@ -63,8 +67,25 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test aurora" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package aurora --lib aurora" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Cargo Command.Run aurora" />
+      <item itemvalue="Cargo Command.Test aurora" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Test aurora" />
         <item itemvalue="Cargo Command.Run aurora" />
       </list>
     </recent_temporary>
@@ -97,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600434394388</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="remove get_urls api and rename map">
+      <created>1600434656864</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600434656864</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,17 +143,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="add thread pool when process request" />
-    <option name="LAST_COMMIT_MESSAGE" value="add thread pool when process request" />
+    <MESSAGE value="remove get_urls api and rename map" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove get_urls api and rename map" />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="135" key="#Inspections" timestamp="1600351812745">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="354" y="135" key="#Inspections/0.0.1440.900@0.0.1440.900" timestamp="1600351812745" />
-    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600332308335">
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600442200092">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600332308335" />
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600442200092" />
     <state x="447" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600266056436">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -138,35 +167,35 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1600350019090" />
-    <state width="1398" height="447" key="GridCell.Tab.0.bottom" timestamp="1600434284165">
+    <state width="1398" height="447" key="GridCell.Tab.0.bottom" timestamp="1600441937660">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617223" />
-    <state width="1398" height="447" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600434284165" />
-    <state width="1398" height="447" key="GridCell.Tab.0.center" timestamp="1600434284164">
+    <state width="1398" height="447" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600441937660" />
+    <state width="1398" height="447" key="GridCell.Tab.0.center" timestamp="1600441937659">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.center/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617221" />
-    <state width="1398" height="447" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600434284164" />
-    <state width="1398" height="447" key="GridCell.Tab.0.left" timestamp="1600434284163">
+    <state width="1398" height="447" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600441937659" />
+    <state width="1398" height="447" key="GridCell.Tab.0.left" timestamp="1600441937658">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.left/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617221" />
-    <state width="1398" height="447" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600434284163" />
-    <state width="1398" height="447" key="GridCell.Tab.0.right" timestamp="1600434284165">
+    <state width="1398" height="447" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600441937658" />
+    <state width="1398" height="447" key="GridCell.Tab.0.right" timestamp="1600441937660">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617222" />
-    <state width="1398" height="447" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600434284165" />
+    <state width="1398" height="447" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600441937660" />
     <state x="543" y="159" key="RollbackChangesDialog" timestamp="1600352320387">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="543" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1600352320387" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600434403177">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600434665465">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600344199850" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600434403177" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600434665465" />
     <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1600179175600">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

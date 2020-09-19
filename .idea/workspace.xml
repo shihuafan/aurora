@@ -15,7 +15,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9615839f-ff20-498f-ad27-df9fb115b7e0" name="Default Changelist" comment="add README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aurora" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/response.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/response.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,13 +85,15 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Cargo Command.Run aurora" />
-      <item itemvalue="Cargo Command.Test aurora" />
-    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo Command.Run aurora" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -137,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600443459353</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test">
+      <created>1600445478956</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600445478956</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,7 +169,8 @@
     <MESSAGE value="remove get_urls api and rename map" />
     <MESSAGE value="add lib" />
     <MESSAGE value="add README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="add README.md" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="354" y="135" key="#Inspections" timestamp="1600351812745">
@@ -173,10 +185,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1600442200092" />
-    <state x="447" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600266056436">
+    <state x="447" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600447363099">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="447" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1600266056436" />
+    <state x="447" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1600447363099" />
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1600265885936">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -185,35 +197,35 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1600350019090" />
-    <state width="1398" height="447" key="GridCell.Tab.0.bottom" timestamp="1600441937660">
+    <state width="1398" height="258" key="GridCell.Tab.0.bottom" timestamp="1600534937200">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.bottom/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617223" />
-    <state width="1398" height="447" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600441937660" />
-    <state width="1398" height="447" key="GridCell.Tab.0.center" timestamp="1600441937659">
+    <state width="1398" height="258" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600534937200" />
+    <state width="1398" height="258" key="GridCell.Tab.0.center" timestamp="1600534937200">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.center/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617221" />
-    <state width="1398" height="447" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600441937659" />
-    <state width="1398" height="447" key="GridCell.Tab.0.left" timestamp="1600441937658">
+    <state width="1398" height="258" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600534937200" />
+    <state width="1398" height="258" key="GridCell.Tab.0.left" timestamp="1600534937199">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.left/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617221" />
-    <state width="1398" height="447" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600441937658" />
-    <state width="1398" height="447" key="GridCell.Tab.0.right" timestamp="1600441937660">
+    <state width="1398" height="258" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600534937199" />
+    <state width="1398" height="258" key="GridCell.Tab.0.right" timestamp="1600534937200">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600419617222" />
-    <state width="1398" height="447" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600441937660" />
+    <state width="1398" height="258" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600534937200" />
     <state x="543" y="159" key="RollbackChangesDialog" timestamp="1600352320387">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="543" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1600352320387" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600443467066">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1600445820257">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/-272.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1600344199850" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600443467066" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1600445820257" />
     <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1600443905713">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

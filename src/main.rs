@@ -13,10 +13,13 @@ fn main() {
     aurora.run("127.0.0.1", "1234");
 }
 
-fn my_test(_request: &Request, _response: &mut Response){
-    println!("==my_test==")
+fn my_test(_request: &Request, response: &mut Response){
+    println!("==my_test==");
+    response.write_text("shihuafan&&wss");
+    response.write_head("name", "wss");
 }
 
-fn default(_request: &Request, _response: &mut Response){
-    println!("==default==")
+fn default(_request: &Request, response: &mut Response){
+    println!("==default==");
+    response.write_file("/Users/shihuafan/desktop/rust_test.txt")
 }

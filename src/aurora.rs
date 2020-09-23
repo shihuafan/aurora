@@ -5,15 +5,17 @@ use std::io::Write;
 use crate::request::Request;
 use crate::response::Response;
 use threadpool::ThreadPool;
+use std::sync::{Arc, RwLock, RwLockReadGuard};
 
 pub struct Aurora {
-    pub listener_map: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
-    pub pool: ThreadPool
+    listener_map: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
+    pool: ThreadPool,
 }
 
 impl Default for Aurora{
     fn default() -> Self {
-        Aurora{ listener_map: HashMap::new(), pool: ThreadPool::new(4) }
+        Aurora{ listener_map: HashMap::new(),
+            pool: ThreadPool::new(4),}
     }
 }
 
@@ -30,17 +32,19 @@ impl Aurora{
 
         let listener = TcpListener::bind(address).unwrap();
 
+        let map = self.get_map();
+        let arc_map = Arc::new(RwLock::new(map));
         for stream in listener.incoming() {
-            self.process_request(stream.unwrap());
+            self.process_request(arc_map.clone(), stream.unwrap());
         }
     }
 
-    fn process_request(&self, mut s: TcpStream){
-        let mut map = self.get_map();
+    fn process_request(&self, arc_map: Arc<RwLock<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>>, mut s: TcpStream){
         self.pool.execute(move || {
             let request = Request::new(&mut s);
             let mut response = Response::new();
-            let func = match_func(&request.url, &mut map);
+            let arc_map = arc_map.read().unwrap();
+            let func = match_func(&request.url, &arc_map);
             if func.is_some(){
                 let func = func.unwrap();
                 func(&request, &mut response);
@@ -64,7 +68,7 @@ impl Aurora{
     }
 }
 
-pub fn match_func<'a>(url: &'a str, map: &'a mut HashMap<Box<String>, Box<fn(&Request, &mut Response)>>)
+pub fn match_func<'a>(url: &'a str, map: &'a RwLockReadGuard<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>)
     -> Option<&'a Box<fn(&Request, &mut Response)>>{
     let value = if map.contains_key(&url.to_string()){
         map.get(&url.to_string())

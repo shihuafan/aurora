@@ -27,7 +27,7 @@ impl Request{
             return Option::None
         }
 
-        let mut request = Request::get_request_by_head(lines.next().unwrap());
+        let mut request = Request::get_request_by_head(&status_line.unwrap());
 
         loop {
             let line = lines.next();
@@ -95,7 +95,7 @@ impl Request{
 fn verify_status_line(status_line: &Option<&str>) -> bool{
     if status_line.is_none() {  return false };
     let status_line = status_line.unwrap();
-    if status_line.starts_with("HTTP") {
+    if status_line.contains(r"HTTP") {
         return true;
     }else{
         return false;

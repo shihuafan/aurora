@@ -21,9 +21,9 @@ impl Default for Aurora{
 
 impl Aurora{
     pub fn add_listener(&mut self, url: &str, func: fn(&Request, &mut Response)){
-        let map = self.listener_map.clone();
-        let mut a = map.write().unwrap();
-        a.insert(Box::new(url.to_string()), Box::new(func));
+        let arc_map = self.listener_map.clone();
+        let mut map = arc_map.write().unwrap();
+        map.insert(Box::new(url.to_string()), Box::new(func));
     }
 
     pub fn run(&self, host: &str, port: &str){

@@ -8,20 +8,22 @@ use threadpool::ThreadPool;
 use std::sync::{Arc, RwLock, RwLockReadGuard};
 
 pub struct Aurora {
-    listener_map: HashMap<Box<String>, Box<fn(&Request, &mut Response)>>,
+    listener_map: Arc<RwLock<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>>,
     pool: ThreadPool,
 }
 
 impl Default for Aurora{
     fn default() -> Self {
-        Aurora{ listener_map: HashMap::new(),
+        Aurora{ listener_map: Arc::new(RwLock::new(HashMap::new())),
             pool: ThreadPool::new(4),}
     }
 }
 
 impl Aurora{
     pub fn add_listener(&mut self, url: &str, func: fn(&Request, &mut Response)){
-        self.listener_map.insert(Box::new(url.to_string()), Box::new(func));
+        let map = self.listener_map.clone();
+        let mut a = map.write().unwrap();
+        a.insert(Box::new(url.to_string()), Box::new(func));
     }
 
     pub fn run(&self, host: &str, port: &str){
@@ -32,40 +34,31 @@ impl Aurora{
 
         let listener = TcpListener::bind(address).unwrap();
 
-        let map = self.get_map();
-        let arc_map = Arc::new(RwLock::new(map));
         for stream in listener.incoming() {
-            self.process_request(arc_map.clone(), stream.unwrap());
+            self.process_request(stream.unwrap());
         }
     }
 
-    fn process_request(&self, arc_map: Arc<RwLock<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>>, mut s: TcpStream){
+    fn process_request(&self, mut stream: TcpStream){
+        let arc_map = self.listener_map.clone();
         self.pool.execute(move || {
-            let request = Request::new(&mut s);
+            let request = Request::new(&mut stream);
             let mut response = Response::new();
-            let arc_map = arc_map.read().unwrap();
-            let func = match_func(&request.url, &arc_map);
+            let map = arc_map.read().unwrap();
+            let func = match_func(&request.url, &map);
             if func.is_some(){
                 let func = func.unwrap();
                 func(&request, &mut response);
                 let bytes = response.get_bytes();
-                s.write(bytes.as_slice()).unwrap();
-                s.flush().unwrap();
+                stream.write(bytes.as_slice()).unwrap();
+                stream.flush().unwrap();
             }else{
-                s.write("HTTP 404 NOT FOUND\r\n\r\n".as_bytes()).unwrap();
-                s.flush().unwrap();
+                stream.write("HTTP 404 NOT FOUND\r\n\r\n".as_bytes()).unwrap();
+                stream.flush().unwrap();
             }
         });
     }
 
-    fn get_map(&self) -> HashMap<Box<String>, Box<fn(&Request, &mut Response)>>{
-        let mut map = HashMap::new();
-        for url in self.listener_map.keys() {
-            let func = self.listener_map.get(url).unwrap();
-            map.insert(url.clone(), func.clone());
-        };
-        return map;
-    }
 }
 
 pub fn match_func<'a>(url: &'a str, map: &'a RwLockReadGuard<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>)

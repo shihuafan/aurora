@@ -11,7 +11,7 @@ pub struct Request {
 }
 
 impl Request{
-    pub fn new(stream: &mut TcpStream) -> Request{
+    pub fn new(stream: &mut TcpStream) -> Option<Request>{
         let mut string_buffer = String::new();
         loop{
             let mut buffer = [0; 1024];
@@ -21,6 +21,12 @@ impl Request{
         }
 
         let mut lines = string_buffer.lines();
+
+        let status_line = lines.next();
+        if verify_status_line(&status_line) == false{
+            return Option::None
+        }
+
         let mut request = Request::get_request_by_head(lines.next().unwrap());
 
         loop {
@@ -42,7 +48,7 @@ impl Request{
             if line == Option::None{ break };
         }
 
-        return request;
+        return Some(request);
     }
 
     fn get_request_by_head(head: &str) -> Request{
@@ -83,5 +89,15 @@ impl Request{
             };
         };
         return request;
+    }
+}
+
+fn verify_status_line(status_line: &Option<&str>) -> bool{
+    if status_line.is_none() {  return false };
+    let status_line = status_line.unwrap();
+    if status_line.starts_with("HTTP") {
+        return true;
+    }else{
+        return false;
     }
 }

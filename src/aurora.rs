@@ -43,22 +43,30 @@ impl Aurora{
         let arc_map = self.listener_map.clone();
         self.pool.execute(move || {
             let request = Request::new(&mut stream);
-            let mut response = Response::new();
-            let map = arc_map.read().unwrap();
-            let func = match_func(&request.url, &map);
-            if func.is_some(){
-                let func = func.unwrap();
-                func(&request, &mut response);
-                let bytes = response.get_bytes();
-                stream.write(bytes.as_slice()).unwrap();
-                stream.flush().unwrap();
-            }else{
-                stream.write("HTTP 404 NOT FOUND\r\n\r\n".as_bytes()).unwrap();
-                stream.flush().unwrap();
-            }
+            let bytes = get_response_bytes(arc_map, request);
+            stream.write(bytes.as_slice()).unwrap();
+            stream.flush().unwrap();
         });
     }
 
+}
+
+fn get_response_bytes(arc_map: Arc<RwLock<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>>, request: Option<Request>) -> Vec<u8>{
+    if request.is_none() {
+        return Vec::<u8>::from("Error\r\n\r\n");
+    };
+    let request = request.unwrap();
+    let mut response = Response::new();
+    let map = arc_map.read().unwrap();
+    let func = match_func(&request.url, &map);
+    if func.is_some(){
+        let func = func.unwrap();
+        func(&request, &mut response);
+        let bytes = response.get_bytes();
+        return bytes;
+    }else{
+        return Vec::<u8>::from("HTTP 404 NOT FOUND\r\n\r\n");
+    }
 }
 
 pub fn match_func<'a>(url: &'a str, map: &'a RwLockReadGuard<HashMap<Box<String>, Box<fn(&Request, &mut Response)>>>)
